@@ -12,19 +12,19 @@ namespace Project
         static void Main()
         {
             Console.WriteLine(commands);
-            Listen();
+            AwaitCommand();
         }
 
-        static void Listen()
+        static void AwaitCommand()
         {
-            string input = Console.ReadLine().ToLower();
-            if (input == null)
+            string userInput = Console.ReadLine().ToLower();
+            if (userInput == null)
             {
                 return;
             }
             else
             {
-                Listener(input);
+                ProcessCommand(userInput);
             }
         }
 
@@ -43,7 +43,7 @@ namespace Project
                     Console.WriteLine("Item already exists!");
                 }
             }
-            Listen();
+            AwaitCommand();
         }
 
         static void ListItem()
@@ -53,7 +53,7 @@ namespace Project
             {
                 Console.WriteLine(item.Value);
             }
-            Listen();
+            AwaitCommand();
         }
 
         static void RemoveItem()
@@ -71,24 +71,24 @@ namespace Project
                     Console.WriteLine("Item does not exist!");
                 }
             }
-            Listen();
+            AwaitCommand();
         }
 
         static void ClearItems()
         {
             Console.WriteLine("Items cleared...");
             itemsMap.Clear();
-            Listen();
+            AwaitCommand();
         }
 
         static void ListCommands()
         {
             Console.WriteLine("Listing commands...");
             Console.WriteLine(commands);
-            Listen();
+            AwaitCommand();
         }
 
-        static void Listener(string command)
+        static void ProcessCommand(string command)
         {
             const string addItem = "add item";
             const string listItems = "list items";
@@ -114,7 +114,7 @@ namespace Project
                     case listCommands:
                         ListCommands();
                         break;
-                    default: Listen(); break;
+                    default: AwaitCommand(); break;
                 }
             }
         }
